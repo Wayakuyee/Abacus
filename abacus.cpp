@@ -33,9 +33,24 @@ int main(int argc, char *argv[])
   cout << "Please enter the operation you want to perform: " << endl;
   cout << "('a' for addition, 's' for subtraction, 'm' for multiplication, 'd' for division, 'e' for exponent x^y) ";
   cin >> op;
+/*
+  // Attempt at handling decimals
+  int x = (int)xin;
+  int xdec = 0;
+  while(xin % 1){
+    xin = xin * 10;
+    xdec++;
+  }
 
+  int y = (int)yin;
+  int ydec = 0;
+  while(yin % 1){
+    yin = yin * 10;
+    ydec++;
+  }
+*/
   // Default answer
-  int answer = 69;
+  float answer = 69;
   int r = 0;
 
   // Calculate the answer
@@ -52,6 +67,85 @@ int main(int argc, char *argv[])
     op = '*';
   }
   else if(op == 'd'){
+
+    if(y == 0){
+
+      digits = 10;
+      bool M[10][digits];
+
+      // Top frame
+      cout << " ";
+      for(int j = 0; j <= digits; j++){
+        if(j == 5){
+          cout << "\\   \\";
+        }
+        else{
+          cout << "___";
+        }
+      }
+      cout << endl;
+
+      cout << "/";
+      for(int j = 0; j <= digits; j++){
+        if(j == 5){
+          cout << "/   /";
+        }
+        else{
+          cout << "___";
+        }
+      }
+      cout << "\\" << endl;
+
+      // Rows
+      for(int i = 0; i < rows; i++){
+        cout << "| |";
+        if(i == 2){
+          for(int j = 0; j < digits; j++){
+            if(j == 5){
+              cout << "/   /";
+            }
+            else{
+              cout << "~~~";
+            }
+          }
+          cout << "| |" << endl;
+          cout << "| |";
+        }
+        for(int j = 0; j < digits; j++){
+          if(j == 5 && i%2){
+            cout << "/   /";
+          }
+          else if(j == 5 && (i+1)%2){
+            cout << "\\   \\";
+          }
+          else if(M[i][j] == true){
+            cout << " | ";
+          }
+          else if(M[i][j] == false){
+            cout << "(_)";
+          }
+        }
+        cout << "| |" << endl;
+      }
+
+      // Bottom frame
+      cout << "\\";
+      for(int j = 0; j <= digits; j++){
+        if(j == 5){
+          cout << "/   /";
+        }
+        else{
+          cout << "___";
+        }
+      }
+      cout << "/" << endl;
+
+      cout << endl;
+      cout << "You broke the abacus" << endl;
+      cout << endl;
+
+      return 0;
+    }
     answer = x / y;
     op = '/';
     r = x % y;
